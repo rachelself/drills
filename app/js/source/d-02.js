@@ -27,9 +27,11 @@
       {
       case false:
         $div.addClass('even');
+        $('.even').toLowerCase();
         break;
       case true:
         $div.addClass('odd');
+        $('.odd').toUpperCase();
       }
 
       $div.text(word);

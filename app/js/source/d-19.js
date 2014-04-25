@@ -3,64 +3,60 @@
 
   $(document).ready(init);
 
-  // var r = 0;
-  // var g = 0;
-  // var b = 0;
-  // var a = 0;
-  // var string = [];
 
   function init()
   {
-    $('#colorbox').click(newColor);
+    $('#get').click(go);
   }
 
-  function newColor()
+  function go()
   {
-    //resetColors();
-    $('#colorbox').css('background-color', getColors());
+    var symbols = $('#symbol').val().trim().toUpperCase().split(',').map(strip);
+    // console.log(symbols);
+    var urls = symbols.map(getUrls);
+    // console.log(urls);
+
+    var prices = urls.map(jSon);
     //debugger;
+    console.log(prices);
+
+
   }
 
-  function getColors()
+
+  function strip(x)
   {
-
-    $('#colorbox').css('background-color', 'rgba('+Math.floor(Math.random() * 298)+','+Math.floor(Math.random() * 298)+','+Math.floor(Math.random() * 298));
-
+    return x.trim();
   }
 
-  // function resetColors()
-  // {
-  //
-  //   console.log
-  //   debugger;
-  // }
+  function getUrls(symbol)
+  {
+    return 'http://dev.markitondemand.com/Api/v2/Quote/jsonp?symbol='+symbol+'&callback=?';
+  }
 
-  // function getColors()
+  // function sum()
   // {
-  //   r = getRandom();
-  //   g = getRandom();
-  //   b = getRandom();
-  //   a = Math.floor(Math.random() * 2);
-  //   string.push(r,g,b,a);
-  //   var z = string.toString();
-  //   var newcolor = 'rgba(' + z + ')';
-  //   console.log(newcolor);
-  //   //debugger;
-  //   return newcolor;
+  //   var quotes = [];
+  //   quotes.push(jSon());
+  //   debugger;
+  //   console.log(quotes);
   //
   // }
 
-  // function resetColors()
-  // {
-  //   $('#colorbox').css('background-color', 'rgba(0,0,0,0)');
-  //   console.log
-  //   debugger;
-  // }
+  function jSon(urls)
+  {
+    var price = [];
 
-  // function getRandom()
-  // {
-  //   return Math.floor(Math.random() * 298);
-  // }
+    $.getJSON(urls, function(data){
+
+      price.push(data.LastPrice);
+      debugger;
+      return price;
+
+    });
+  }
+
+
 
 
 })();

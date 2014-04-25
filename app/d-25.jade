@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Stock Graph
+    link(rel='stylesheet', href='./css/d-25.css')
+  body
+    #controls
+      h1 3-D DONUT
+      h4 Add your holdings one company at a time.
+      input#symbol(type='text', placeholder='symbol')
+      input#shares(type='number', placeholder='shares')
+      button#add Add
+    #graph
+
+
+    script(src='./js/vendor/jquery-2.1.0.js')
+
+    script(src='http://www.amcharts.com/lib/3/amcharts.js')
+    script(src='http://www.amcharts.com/lib/3/pie.js')
+    script(src='http://www.amcharts.com/lib/3/themes/light.js')
+    script(src='./js/source/d-25.js')

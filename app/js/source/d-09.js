@@ -16,16 +16,16 @@
 
   function newColor()
   {
-    //resetColors();
-    $('#colorbox').css('background-color', getColors());
-    //debugger;
+    $('#colorbox').css('background-color', 'rgba'+getColors());
+    $('#name').text('rgba'+getColors());
+
   }
 
   function getColors()
   {
 
-    $('#colorbox').css('background-color', 'rgba('+Math.floor(Math.random() * 298)+','+Math.floor(Math.random() * 298)+','+Math.floor(Math.random() * 298));
-
+    var colorValues = '('+Math.floor(Math.random() * 296)+', '+Math.floor(Math.random() * 296)+', '+Math.floor(Math.random() * 296)+', '+(Math.random() * 2).toFixed(2)+')';
+    return colorValues;
   }
 
   // function resetColors()

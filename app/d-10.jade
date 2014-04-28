@@ -2,14 +2,17 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
-    title Multi Quotes
-    link(rel='stylesheet', href='./css/d-16.css')
+    title Clock
+    link(rel='stylesheet', href='./css/d-10.css')
   body
-    h1 Multi-Quotes
-    input#symbol(type='text')
-    button#get Get Quote
+    h1 Clock
     #container
+      #clock
+        h2.currentTime 0
+      #controls
+        button#start Start
+        button#stop Stop
 
 
     script(src='./js/vendor/jquery-2.1.0.js')
-    script(src='./js/source/d-16.js')
+    script(src='./js/source/d-10.js')

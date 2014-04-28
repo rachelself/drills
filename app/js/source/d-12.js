@@ -3,64 +3,57 @@
 
   $(document).ready(init);
 
-  // var r = 0;
-  // var g = 0;
-  // var b = 0;
-  // var a = 0;
-  // var string = [];
+
 
   function init()
   {
-    $('#colorbox').click(newColor);
+    $('#go').click(go);
   }
 
-  function newColor()
+  function go()
   {
-    //resetColors();
-    $('#colorbox').css('background-color', getColors());
-    //debugger;
+    var x = $('#nums').val().trim().split(',').map(strip).map(squareOrCube).forEach(makeBoxes);
+    console.log(x);
   }
 
-  function getColors()
+  function strip(num)
   {
-
-    $('#colorbox').css('background-color', 'rgba('+Math.floor(Math.random() * 298)+','+Math.floor(Math.random() * 298)+','+Math.floor(Math.random() * 298));
-
+    return num.trim() * 1;
   }
 
-  // function resetColors()
-  // {
-  //
-  //   console.log
-  //   debugger;
-  // }
+  function squareOrCube(num)
+  {
+    if(isOdd(num) === 1)
+    {
+      return Math.pow(num, 3);
+    }
+    else if(isOdd(num) === 0)
+    {
+      return Math.pow(num, 2);
+    }
+  }
 
-  // function getColors()
-  // {
-  //   r = getRandom();
-  //   g = getRandom();
-  //   b = getRandom();
-  //   a = Math.floor(Math.random() * 2);
-  //   string.push(r,g,b,a);
-  //   var z = string.toString();
-  //   var newcolor = 'rgba(' + z + ')';
-  //   console.log(newcolor);
-  //   //debugger;
-  //   return newcolor;
-  //
-  // }
+  function isOdd(num)
+  {
+    return num%2;
+  }
 
-  // function resetColors()
-  // {
-  //   $('#colorbox').css('background-color', 'rgba(0,0,0,0)');
-  //   console.log
-  //   debugger;
-  // }
+  function makeBoxes(num)
+  {
+    var $div = $('<div>');
 
-  // function getRandom()
-  // {
-  //   return Math.floor(Math.random() * 298);
-  // }
+    if(isOdd(num) === 1)
+    {
+      $div.addClass('odd');
+    }
+    else if(isOdd(num) === 0)
+    {
+      $div.addClass('even');
+    }
+
+    $div.text(num);
+    $('#container').append($div);
+  }
 
 
 })();

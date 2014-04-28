@@ -3,64 +3,90 @@
 
   $(document).ready(init);
 
-  // var r = 0;
-  // var g = 0;
-  // var b = 0;
-  // var a = 0;
-  // var string = [];
+  var timer;
+  var clock;
 
   function init()
   {
-    $('#colorbox').click(newColor);
+    $('#container').on('click', '#start', startTimer);
+    $('#container').on('click', '#stop', stopTimer);
   }
 
-  function newColor()
+  function startTimer()
   {
-    //resetColors();
-    $('#colorbox').css('background-color', getColors());
+    //clearInterval(timer);
+    clock = $('.currentTime').text() * 1;
+    timer = setInterval(updateClock, 1000);
+    //debugger;
+
+  }
+
+  function updateClock()
+  {
+    clock++;
+    $('.currentTime').text(clock);
+  }
+
+  function stopTimer()
+  {
+    clearInterval(timer);
     //debugger;
   }
 
-  function getColors()
-  {
 
-    $('#colorbox').css('background-color', 'rgba('+Math.floor(Math.random() * 298)+','+Math.floor(Math.random() * 298)+','+Math.floor(Math.random() * 298));
 
-  }
 
-  // function resetColors()
+
+  // function init()
   // {
-  //
-  //   console.log
-  //   debugger;
+  //   $('#start').click(startTimer);
+  //   $('#stop').click(pauseTimer);
   // }
-
-  // function getColors()
+  //
+  // function startTimer()
   // {
-  //   r = getRandom();
-  //   g = getRandom();
-  //   b = getRandom();
-  //   a = Math.floor(Math.random() * 2);
-  //   string.push(r,g,b,a);
-  //   var z = string.toString();
-  //   var newcolor = 'rgba(' + z + ')';
-  //   console.log(newcolor);
+  //   timer = setInterval(updateClock, 1000);
+  // }
+  //
+  // function updateClock()
+  // {
+  //   timer++;
+  //   $('.currentTime').text(timer);
+  //
+  // }
+  //
+  // function pauseTimer()
+  // {
+  //   //var count = timer;
+  //   clearInterval(timer);
+  //   debugger;
+  //   $('.currentTime').text(timer);
   //   //debugger;
-  //   return newcolor;
-  //
-  // }
-
-  // function resetColors()
-  // {
-  //   $('#colorbox').css('background-color', 'rgba(0,0,0,0)');
-  //   console.log
-  //   debugger;
-  // }
-
-  // function getRandom()
-  // {
-  //   return Math.floor(Math.random() * 298);
   // }
 
 
 })();
+
+
+// function resetInterval(bool)
+// {
+//   if(bool)
+//   {
+//     timer = setInterval(function(){
+//       timer++;
+//       $('.currentTime').text(timer);
+//     },1000);
+//   }
+//   else
+//   {
+//       clearInterval(timer);
+//   }
+// }
+//
+// $('#start').click(function()
+// {
+//   resetInterval(true);
+// });
+// $('#stop').click(function(){
+//   resetInterval(false);
+// });

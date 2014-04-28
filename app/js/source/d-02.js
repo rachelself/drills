@@ -5,41 +5,62 @@
 
   function init()
   {
-    $('button').click(makeArray);
+    $('button').click(get);
   }
 
-  function makeArray()
+  function get()
   {
-    var str = $('input').val();
-    var strings = str.split(' ');
-    makeBoxes(strings);
+    $('.input').val().trim().split(',').map(strip).map(makeBoxes);
+
   }
 
-  function makeBoxes(strings)
+  function strip(string)
   {
-    for(var i = 0; i < strings.length; i++)
+    return string.trim();
+  }
+
+  function makeBoxes(word)
+  {
+    var $div = $('<div>');
+
+    if(isOdd(word) === true)
     {
-      var $div = $('<div>');
-      var word = strings[i];
-      $div.addClass('box');
-
-      switch(isOdd(word))
-      {
-      case false:
-        $div.addClass('even');
-        $('.even').toLowerCase();
-        break;
-      case true:
-        $div.addClass('odd');
-        $('.odd').toUpperCase();
-      }
-
-      $div.text(word);
-      $('#container').append($div);
-
+      $div.text(word.toUpperCase());
+      $div.addClass('odd');
     }
-
+    else
+    {
+      $div.text(word.toLowerCase());
+      $div.addClass('even');
+    }
+    $('#container').append($div);
   }
+
+
+  // {
+  //   for(var i = 0; i < strings.length; i++)
+  //   {
+  //     var $div = $('<div>');
+  //     var word = strings[i];
+  //     $div.addClass('box');
+  //
+  //     switch(isOdd(word))
+  //     {
+  //     case false:
+  //       $div.addClass('even');
+  //       $('.even').toLowerCase();
+  //       break;
+  //     case true:
+  //       $div.addClass('odd');
+  //       $('.odd').toUpperCase();
+  //     }
+  //
+  //     $div.text(word);
+  //     $('#container').append($div);
+  //
+  //   }
+  //
+  // }
 
   function isOdd(word)
   {
